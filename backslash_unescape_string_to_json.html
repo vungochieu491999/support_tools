@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        code {
+            color: #d14;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: none;
+        }
+
+        div#output {
+            width: 100%;
+        }
+
+        pre#json {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            overflow: auto;
+            white-space: pre-wrap;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON Data</h1>
+    <textarea id="json-string" placeholder="Enter JSON String"></textarea>
+    <button onclick="runFormat()">Run</button>
+    <div id="output">
+        <pre id="json"></pre>
+    </div>
+
+    <script>
+        function runFormat() {
+            const jsonString = document.getElementById('json-string').value;
+            
+            try {
+                // Parse the user input from the textarea
+                let jsonObject = JSON.parse(jsonString);
+                jsonObject = JSON.parse(jsonObject);
+                
+                // Format the parsed JSON object
+                const formattedJson = JSON.stringify(jsonObject, null, 2);
+                
+                // Display the formatted JSON in the <pre> element
+                document.getElementById('json').textContent = formattedJson;
+            } catch (error) {
+                // Display the error message if JSON parsing fails
+                document.getElementById('json').textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
